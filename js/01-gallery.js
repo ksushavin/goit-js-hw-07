@@ -11,13 +11,12 @@ let instance;
 function onImageClick(event) {
     event.preventDefault() 
     const clickOnImg = event.target;
-    const urlOfBigImg = clickOnImg.dataset.source;
-
+    
     if (!clickOnImg.classList.contains("gallery__image")) {
         return
     }
-    instance = basicLightbox.create(`
-    <img src="${urlOfBigImg}">`)
+    const urlOfBigImg = clickOnImg.dataset.source;
+    instance = basicLightbox.create(`<img src="${urlOfBigImg}">`)
     instance.show();
 
     window.addEventListener("keydown", onEscKeyPress); 
@@ -32,7 +31,7 @@ function onEscKeyPress(keydown) {
 
 function createGallery(galleryArray) {
     
-    return galleryItems.map(({ preview, original, description }) => {
+    return galleryArray.map(({ preview, original, description }) => {
         return `<div class = "gallery__item">
                     <a class = "gallery__link" href = "${original}">
                         <img
